@@ -1,4 +1,4 @@
-export interface GithubSearchData {
+export interface GithubUserData {
     login: string;
     id: number;
     node_id: string;
@@ -17,5 +17,20 @@ export interface GithubSearchData {
     received_events_url: string;
     type: string;
     site_admin: boolean;
-    score: number;
+    name: string;
+    company: any;
+    blog: string;
+    location: any;
+    email: any;
+    hireable: any;
+    bio: any;
+    twitter_username: any;
+    public_repos: number;
+    public_gists: number;
+    followers: number;
+    following: number;
+    created_at: string;
+    updated_at: string;
 }
+
+export interface GithubSearchData extends Pick<GithubUserData, "url"> {}

@@ -1,1 +1,1 @@
-export type { GithubSearchData } from "./github-search-data";
+export * from "./github-search-data";

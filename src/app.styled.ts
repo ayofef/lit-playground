@@ -1,8 +1,23 @@
 import { css } from "lit";
 
 export const APP_STYLES = css`
-    :host {
+    main {
         width: 100%;
-        max-width: 600px;
+        height: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+    }
+
+    main.dark {
+        background-color: #151d30;
+    }
+    .app-wrapper {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
     }
 `;

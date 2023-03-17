@@ -11,5 +11,10 @@ export const HEADER_STYLES = css`
         font-family: "Source Code Pro", monospace;
         font-size: 22px;
         font-weight: 600;
+        color: #1f2a48;
+    }
+
+    h1.dark {
+        color: #fff;
     }
 `;

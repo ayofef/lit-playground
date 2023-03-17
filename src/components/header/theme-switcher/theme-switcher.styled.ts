@@ -13,6 +13,15 @@ export const THEME_SWITCHER_STYLES = css`
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
+        transition: all 0.3s ease-out;
+        padding: 6px 14px;
+        border-radius: 6px;
+    }
+    button:hover {
+        background-color: #1f2a48;
+    }
+    button.light {
+        background-color: #1f2a48;
     }
     span {
         text-transform: uppercase;

@@ -3,6 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import { provide } from "@lit-labs/context";
 import { APP_STYLES } from "./app.styled";
 import { themeContext, Theme } from "./components/header/theme-switcher/theme-context";
+import { searchDataContext, SearchDataContext, UpdateSearchDataContextParams } from "./search-data-context";
+import { LOCAL_STORAGE_KEYS } from "@/constant";
 
 import "./components/header/header-element.js";
 import "./components/search/search-element.ts";
@@ -19,15 +21,47 @@ export class MyElement extends LitElement {
         toggleTheme: this._toggleTheme.bind(this),
     };
 
+    @provide({ context: searchDataContext })
+    @property({ attribute: false })
+    public dataContext: SearchDataContext = {
+        is_loading: false,
+        data: null,
+        error: null,
+        updateSearchData: this._updateSearchData.bind(this),
+    };
+
     render() {
         return html`
-            <header-element></header-element>
-            <search-element></search-element>
-            <profile-element></profile-element>
+            <main class="${this.themeContext?.is_dark_theme ? "dark" : ""}">
+                <div class="app-wrapper">
+                    <header-element ?value=${true}></header-element>
+                    <search-element></search-element>
+                    <profile-element></profile-element>
+                </div>
+            </main>
         `;
     }
 
+    connectedCallback(): void {
+        super.connectedCallback();
+        const isDark = localStorage.getItem(LOCAL_STORAGE_KEYS.IS_DARK_THEME);
+
+        this.themeContext = {
+            ...this.themeContext,
+            is_dark_theme: isDark === "true" ? true : false,
+        };
+    }
+
     _toggleTheme() {
-        this.themeContext.is_dark_theme = !this.themeContext.is_dark_theme;
+        this.themeContext = {
+            ...this.themeContext,
+            is_dark_theme: !this.themeContext.is_dark_theme,
+        };
+    }
+    _updateSearchData(data: UpdateSearchDataContextParams) {
+        this.dataContext = {
+            ...this.dataContext,
+            ...data,
+        };
     }
 }
