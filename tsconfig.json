@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "module": "ESNext",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
         "declaration": true,
         "emitDeclarationOnly": true,
         "outDir": "./types",
@@ -16,8 +20,33 @@
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": false,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@assets/*": [
+                "src/assets/*"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@helpers/*": [
+                "src/helpers/*"
+            ],
+            "@types/*": [
+                "src/types/*"
+            ]
+        }
     },
-    "include": ["src/**/*.ts", "src/components/header/header-element.ts"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": [
+        "src/**/*.ts",
+        "src/components/header/header-element.ts"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
 }

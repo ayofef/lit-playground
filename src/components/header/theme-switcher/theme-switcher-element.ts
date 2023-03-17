@@ -4,8 +4,8 @@ import { consume } from "@lit-labs/context";
 import { themeContext, Theme } from "./theme-context";
 import { THEME_SWITCHER_STYLES } from "./theme-switcher.styled";
 
-import LightThemeIcon from "../../../assets/light_mode.svg";
-import DarkThemeIcon from "../../../assets/dark_mode.svg";
+import LightThemeIcon from "@/assets/light_mode.svg";
+import DarkThemeIcon from "@/assets/dark_mode.svg";
 
 @customElement("theme-switcher-element")
 export class ThemeSwitcherElement extends LitElement {
