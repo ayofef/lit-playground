@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Lit + TS</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.ts"></script>
-  </head>
-  <body>
-    <my-element>
-      <h1>Vite + Lit</h1>
-    </my-element>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet" />
+
+        <!-- METAs -->
+        <title>DevFinder</title>
+
+        <!-- GLOBAL ROOT AND BODY -->
+        <link rel="stylesheet" href="./src/index.css" />
+
+        <!-- APP -->
+        <script type="module" src="/src/github-search-app.ts"></script>
+    </head>
+    <body>
+        <github-search-app> </github-search-app>
+    </body>
 </html>
