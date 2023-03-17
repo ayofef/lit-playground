@@ -5,8 +5,14 @@ import { consume } from "@lit-labs/context";
 import SearchIcon from "@/assets/search.svg";
 import { SEARCH_STYLES } from "./search-element.styled";
 import { apiResponseBuilder } from "@/helpers";
-import { GithubSearchData, GithubUserData } from "@/types";
+import { GithubUserData } from "@/types";
 import { searchDataContext, SearchDataContext } from "@/search-data-context";
+
+const INPUT_ID = "search-input";
+
+interface CustomKeyboardEventDetail extends KeyboardEvent {
+    originalTarget: HTMLInputElement;
+}
 
 @customElement("search-element")
 export class HeaderElement extends LitElement {
@@ -24,31 +30,30 @@ export class HeaderElement extends LitElement {
         return html`
             <div>
                 <img src=${SearchIcon} alt="Search" />
-                <input type="text" placeholder="Search GitHub username.." ${ref(this.inputRef)} />
+                <input type="text" placeholder="Search GitHub username.." ${ref(this.inputRef)} id=${INPUT_ID} />
                 <button type="button" @click=${this.handleSearch}>${buttonLabel}</button>
             </div>
         `;
     }
 
-    private async handleSearch() {
-        const inputRefObj = this.inputRef.value;
-        if (!inputRefObj) return;
+    private async handleSearch(defaultSearchQuery?: string) {
+        let searchQuery: string = "";
+
+        if (defaultSearchQuery) {
+            searchQuery = defaultSearchQuery;
+        }
+
+        if (this.inputRef.value) {
+            const inputRefObj = this.inputRef.value;
+            searchQuery = inputRefObj.value;
+            inputRefObj.value = "";
+        }
 
         this.dataContext?.updateSearchData({ is_loading: true });
-
-        const searchQuery = inputRefObj.value;
-
-        inputRefObj.value = "";
 
         const searchResult = await this.getSearchData(searchQuery);
 
         this.dataContext?.updateSearchData({ is_loading: false, data: searchResult.data, error: searchResult.error });
-
-        /**
-         * TODO: set the search result to  context
-         * - context should have loading state too
-         * - error state too
-         */
     }
 
     private async getSearchData(query: string) {
@@ -68,5 +73,20 @@ export class HeaderElement extends LitElement {
         } catch (error) {
             return apiResponseBuilder(null, (error as Error)?.message || "Something went wrong");
         }
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+
+        this.handleSearch("ayofef");
+
+        window.addEventListener("keyup", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (event.key === "Enter" && (event as CustomKeyboardEventDetail)?.originalTarget?.id === INPUT_ID) {
+                this.handleSearch();
+            }
+        });
     }
 }
