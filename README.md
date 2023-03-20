@@ -7,5 +7,5 @@ Project inspired by [Frontend Mentor Challenge](https://www.frontendmentor.io/ch
 
 ## DEMO
 
--   [Vanilla Js Live Demo](https://vanilla.github-user-search-ap.farouq.dev)
+-   [Vanilla Js Live Demo](https://vanilla.github-user-search-app.farouq.dev)
 -   React Live Demo (coming soon)
