@@ -46,10 +46,21 @@ export class MyElement extends LitElement {
         super.connectedCallback();
         const isDark = localStorage.getItem(LOCAL_STORAGE_KEYS.IS_DARK_THEME);
 
-        this.themeContext = {
-            ...this.themeContext,
-            is_dark_theme: isDark === "true" ? true : false,
-        };
+        if (isDark === "true") {
+            this.themeContext = {
+                ...this.themeContext,
+                is_dark_theme: true,
+            };
+            return;
+        }
+
+        if (isDark === "false") {
+            this.themeContext = {
+                ...this.themeContext,
+                is_dark_theme: false,
+            };
+            return;
+        }
     }
 
     _toggleTheme() {
