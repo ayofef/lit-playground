@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
         "module": "ESNext",
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
         "declaration": true,
         "emitDeclarationOnly": true,
         "outDir": "packages/eslint-config-custom/types",
@@ -19,15 +23,30 @@
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "@assets/*": ["src/assets/*"],
-            "@components/*": ["src/components/*"],
-            "@helpers/*": ["src/helpers/*"],
-            "@types/*": ["src/types/*"],
-            "@constant/*": ["src/constant/*"]
+            "@/*": [
+                "src/*"
+            ],
+            "@assets/*": [
+                "src/assets/*"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@constant/*": [
+                "src/constant/*"
+            ],
+            "@helpers/*": [
+                "src/helpers/*"
+            ],
+            "@types/*": [
+                "src/types/*"
+            ]
         }
     },
-    "include": ["src/**/*.ts", "src/components/header/header-element.ts"],
+    "include": [
+        "src/**/*.ts",
+        "src/components/header/header-element.ts"
+    ],
     "references": [
         {
             "path": "./tsconfig.node.json"
